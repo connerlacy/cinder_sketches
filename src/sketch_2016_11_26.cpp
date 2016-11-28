@@ -9,12 +9,13 @@
 #include "cinder/cairo/Cairo.h"
 #include "cinder/Perlin.h"
 #include "cinder/Rand.h"
+#include "cinder/cairo/cairo.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-#define NUM_PARTICLES 100
+#define NUM_PARTICLES 200
 
 class sketch_2016_11_26 : public App {
   public:
@@ -37,6 +38,11 @@ class sketch_2016_11_26 : public App {
     
     
 };
+
+void prepareSettings(App::Settings *settings)
+{
+    settings->setFullScreen(true);
+}
 
 void sketch_2016_11_26::setup()
 {
@@ -84,11 +90,12 @@ void sketch_2016_11_26::update()
 {
     
     float stepSize = getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth();
+    stepSize *= 1.25;
     float stepX = 0;
     float stepY = 0;
     
     float timeDivisor = 1.0f;
-    float freq = 1 / 20.0;
+    float freq = 1 / 25.0;
     
     for(int i = 0; i < NUM_PARTICLES; i++)
     {
@@ -123,18 +130,20 @@ void sketch_2016_11_26::draw()
 
 void sketch_2016_11_26::render(cairo::Context &c)
 {
-    float distThresh = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.05;
-    float alpha = 1.0;
-    CAIRO_OPERATOR_DARKEN;
-    c.setOperator(CAIRO_OPERATOR_DARKEN);
-    c.setSource(ColorA(0,0,0,0.1));
+    float distThresh = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.048;
+    float radius = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.0025;
+    float lineWidth = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.001;
+    float alpha = 0.33;
+    
+    //c.setOperator(17);
+    c.setSource(ColorA(0,0,0,0.4));
     c.paint();
     
     c.setSource(ColorA(1,1,1,1));
     
     for(int i = 0; i < NUM_PARTICLES; i++)
     {
-        c.circle(m_Positions[i], 2);
+        c.circle(m_Positions[i], radius);
         c.fill();
     }
     
@@ -150,7 +159,7 @@ void sketch_2016_11_26::render(cairo::Context &c)
             
             if(dist < distThresh)
             {
-                c.setLineWidth(0.5);
+                c.setLineWidth( lineWidth );
                 c.line(start, m_Positions[j]);
                 c.stroke();
             }
@@ -159,6 +168,6 @@ void sketch_2016_11_26::render(cairo::Context &c)
     
 }
 
-CINDER_APP( sketch_2016_11_26, RendererGl )
+CINDER_APP( sketch_2016_11_26, RendererGl, prepareSettings )
 
 #endif
