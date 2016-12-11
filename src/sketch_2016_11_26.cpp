@@ -15,7 +15,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-#define NUM_PARTICLES 200
+#define NUM_PARTICLES 300
 
 class sketch_2016_11_26 : public App {
   public:
@@ -90,7 +90,7 @@ void sketch_2016_11_26::update()
 {
     
     float stepSize = getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth();
-    stepSize *= 1.25;
+    stepSize *= 0.99;
     float stepX = 0;
     float stepY = 0;
     
@@ -130,16 +130,16 @@ void sketch_2016_11_26::draw()
 
 void sketch_2016_11_26::render(cairo::Context &c)
 {
-    float distThresh = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.048;
-    float radius = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.0025;
+    float distThresh = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.045;
+    float radius = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.0035;
     float lineWidth = (getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth()) * 0.001;
     float alpha = 0.33;
     
     //c.setOperator(17);
-    c.setSource(ColorA(0,0,0,0.4));
+    c.setSource(ColorA(125.0f/255.0f,209.0f/255.0f,208.0f/255.0f,0.4));
     c.paint();
     
-    c.setSource(ColorA(1,1,1,1));
+    c.setSource(ColorA(226.0f/255.0f,78.0f/255.0f,61.0f/255.0f,0.4));
     
     for(int i = 0; i < NUM_PARTICLES; i++)
     {
@@ -147,7 +147,7 @@ void sketch_2016_11_26::render(cairo::Context &c)
         c.fill();
     }
     
-    c.setSource(ColorA(1,1,1,alpha));
+    c.setSource(ColorA(226.0f/255.0f,78.0f/255.0f,61.0f/255.0f,0.4));
     for(int i = 0; i < NUM_PARTICLES; i++)
     {
         float dist = 0.0;

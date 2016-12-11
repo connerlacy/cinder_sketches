@@ -67,6 +67,7 @@
 		D0AB2AB61DE9FDAB0091832E /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2A881DE9FDAB0091832E /* b2Rope.cpp */; };
 		D0AB2AB81DE9FE090091832E /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2AB71DE9FE090091832E /* Cairo.cpp */; };
 		D0AB2ABB1DE9FEDD0091832E /* sketch_2016_11_26.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2ABA1DE9FEDD0091832E /* sketch_2016_11_26.cpp */; };
+		D0E199291DEBF8650095F223 /* sketch_2016_12_10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E199281DEBF8650095F223 /* sketch_2016_12_10.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +185,7 @@
 		D0AB2AB91DE9FE1C0091832E /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cairo.h; sourceTree = "<group>"; };
 		D0AB2ABA1DE9FEDD0091832E /* sketch_2016_11_26.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sketch_2016_11_26.cpp; path = ../src/sketch_2016_11_26.cpp; sourceTree = "<group>"; };
 		D0D34FCB1DEA060700FAAEA7 /* sketches.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sketches.h; path = ../include/sketches.h; sourceTree = "<group>"; };
+		D0E199281DEBF8650095F223 /* sketch_2016_12_10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sketch_2016_12_10.cpp; path = ../src/sketch_2016_12_10.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 		D03653681DEA02E000704C43 /* sketches */ = {
 			isa = PBXGroup;
 			children = (
+				D0E199281DEBF8650095F223 /* sketch_2016_12_10.cpp */,
 				D0AB2ABA1DE9FEDD0091832E /* sketch_2016_11_26.cpp */,
 				D03653661DEA020400704C43 /* sketch_2016_10_22.cpp */,
 			);
@@ -614,6 +617,7 @@
 				D0AB2AB41DE9FDAB0091832E /* b2WeldJoint.cpp in Sources */,
 				D0AB2A961DE9FDAB0091832E /* b2BlockAllocator.cpp in Sources */,
 				D0AB2AB51DE9FDAB0091832E /* b2WheelJoint.cpp in Sources */,
+				D0E199291DEBF8650095F223 /* sketch_2016_12_10.cpp in Sources */,
 				D0AB2A9C1DE9FDAB0091832E /* b2Body.cpp in Sources */,
 				D0AB2A9D1DE9FDAB0091832E /* b2ContactManager.cpp in Sources */,
 				D0AB2A911DE9FDAB0091832E /* b2TimeOfImpact.cpp in Sources */,

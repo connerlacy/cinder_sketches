@@ -34,6 +34,11 @@ class sketch_2016_10_22 : public App {
     
 };
 
+void prepareSettings(App::Settings *settings)
+{
+    settings->setFullScreen(true);
+}
+
 void sketch_2016_10_22::setup()
 {
     for(int i = 0; i < NUM_PARTICLES; i++)
@@ -72,8 +77,6 @@ void sketch_2016_10_22::draw()
     
 }
 
-
-
 void sketch_2016_10_22::render(cairo::Context &c)
 {
     // Make sure background is actually white;
@@ -85,7 +88,7 @@ void sketch_2016_10_22::render(cairo::Context &c)
         //m_OffscreenContext.paint();
     }
     
-    c.setSource(ColorA(1,0.9,0.7,0.025));
+    c.setSource(ColorA(1,1,1,0.025));
     c.rectangle(getWindowBounds());
     c.fill();
     
@@ -109,13 +112,13 @@ void sketch_2016_10_22::render(cairo::Context &c)
         c.fill();
         */
         
-        c.setSource(ColorA(0.5,0.0,0.5,1));
+        c.setSource(ColorA(0.2,0.2,0.2,1));
         c.circle(x, y, radius/2.0);
         c.fill();
     }
 }
 
-CINDER_APP( sketch_2016_10_22, RendererGl )
+CINDER_APP( sketch_2016_10_22, RendererGl, prepareSettings )
 
 #endif
 
