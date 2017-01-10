@@ -20,6 +20,9 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C5C7CBD7C9DC459CB36F9274 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4FF1D965C3294A09B61960C9 /* CinderApp.icns */; };
 		D03653671DEA020400704C43 /* sketch_2016_10_22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03653661DEA020400704C43 /* sketch_2016_10_22.cpp */; };
+		D04DD9AD1DFD08FB00397813 /* sketch_2016_12_11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04DD9AC1DFD08FB00397813 /* sketch_2016_12_11.cpp */; };
+		D04DD9B01DFE5A7A00397813 /* Hyphae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04DD9AE1DFE5A7A00397813 /* Hyphae.cpp */; };
+		D0A494B31DFF7C7600A92EC6 /* sketch_YYYY_MM_DD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A494B21DFF7C7600A92EC6 /* sketch_YYYY_MM_DD.cpp */; };
 		D0AB2A8A1DE9FDAB0091832E /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2A2A1DE9FDAB0091832E /* b2BroadPhase.cpp */; };
 		D0AB2A8B1DE9FDAB0091832E /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2A2C1DE9FDAB0091832E /* b2CollideCircle.cpp */; };
 		D0AB2A8C1DE9FDAB0091832E /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AB2A2D1DE9FDAB0091832E /* b2CollideEdge.cpp */; };
@@ -90,6 +93,10 @@
 		7E89400487F14301BC8984DF /* sketches_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sketches_Prefix.pch; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* sketches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sketches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03653661DEA020400704C43 /* sketch_2016_10_22.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sketch_2016_10_22.cpp; path = ../src/sketch_2016_10_22.cpp; sourceTree = "<group>"; };
+		D04DD9AC1DFD08FB00397813 /* sketch_2016_12_11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sketch_2016_12_11.cpp; path = ../src/sketch_2016_12_11.cpp; sourceTree = "<group>"; };
+		D04DD9AE1DFE5A7A00397813 /* Hyphae.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hyphae.cpp; path = ../include/hyphae/Hyphae.cpp; sourceTree = "<group>"; };
+		D04DD9AF1DFE5A7A00397813 /* Hyphae.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Hyphae.hpp; path = ../include/hyphae/Hyphae.hpp; sourceTree = "<group>"; };
+		D0A494B21DFF7C7600A92EC6 /* sketch_YYYY_MM_DD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sketch_YYYY_MM_DD.cpp; path = ../src/sketch_YYYY_MM_DD.cpp; sourceTree = "<group>"; };
 		D0AB2A281DE9FDAB0091832E /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		D0AB2A2A1DE9FDAB0091832E /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
 		D0AB2A2B1DE9FDAB0091832E /* b2BroadPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2BroadPhase.h; sourceTree = "<group>"; };
@@ -265,6 +272,7 @@
 		29B97314FDCFA39411CA2CEA /* sketch_2016_10_22 */ = {
 			isa = PBXGroup;
 			children = (
+				D04DD9B11DFE5A9000397813 /* Hyphae */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				29B97315FDCFA39411CA2CEA /* Headers */,
 				080E96DDFE201D6D7F000001 /* Source */,
@@ -339,11 +347,22 @@
 		D03653681DEA02E000704C43 /* sketches */ = {
 			isa = PBXGroup;
 			children = (
+				D04DD9AC1DFD08FB00397813 /* sketch_2016_12_11.cpp */,
 				D0E199281DEBF8650095F223 /* sketch_2016_12_10.cpp */,
 				D0AB2ABA1DE9FEDD0091832E /* sketch_2016_11_26.cpp */,
 				D03653661DEA020400704C43 /* sketch_2016_10_22.cpp */,
+				D0A494B21DFF7C7600A92EC6 /* sketch_YYYY_MM_DD.cpp */,
 			);
 			name = sketches;
+			sourceTree = "<group>";
+		};
+		D04DD9B11DFE5A9000397813 /* Hyphae */ = {
+			isa = PBXGroup;
+			children = (
+				D04DD9AF1DFE5A7A00397813 /* Hyphae.hpp */,
+				D04DD9AE1DFE5A7A00397813 /* Hyphae.cpp */,
+			);
+			name = Hyphae;
 			sourceTree = "<group>";
 		};
 		D0AB2A271DE9FDAB0091832E /* Box2D */ = {
@@ -590,6 +609,7 @@
 				D0AB2A8A1DE9FDAB0091832E /* b2BroadPhase.cpp in Sources */,
 				D0AB2A9E1DE9FDAB0091832E /* b2Fixture.cpp in Sources */,
 				D0AB2A951DE9FDAB0091832E /* b2PolygonShape.cpp in Sources */,
+				D0A494B31DFF7C7600A92EC6 /* sketch_YYYY_MM_DD.cpp in Sources */,
 				D0AB2A921DE9FDAB0091832E /* b2ChainShape.cpp in Sources */,
 				D0AB2AAD1DE9FDAB0091832E /* b2GearJoint.cpp in Sources */,
 				D0AB2AA71DE9FDAB0091832E /* b2EdgeAndCircleContact.cpp in Sources */,
@@ -610,6 +630,7 @@
 				D0AB2AAC1DE9FDAB0091832E /* b2FrictionJoint.cpp in Sources */,
 				D0AB2A8C1DE9FDAB0091832E /* b2CollideEdge.cpp in Sources */,
 				D0AB2A931DE9FDAB0091832E /* b2CircleShape.cpp in Sources */,
+				D04DD9AD1DFD08FB00397813 /* sketch_2016_12_11.cpp in Sources */,
 				D0AB2AB21DE9FDAB0091832E /* b2RevoluteJoint.cpp in Sources */,
 				D0AB2ABB1DE9FEDD0091832E /* sketch_2016_11_26.cpp in Sources */,
 				D0AB2A8D1DE9FDAB0091832E /* b2CollidePolygon.cpp in Sources */,
@@ -627,6 +648,7 @@
 				D0AB2A991DE9FDAB0091832E /* b2Settings.cpp in Sources */,
 				D0AB2AA01DE9FDAB0091832E /* b2World.cpp in Sources */,
 				D0AB2AA91DE9FDAB0091832E /* b2PolygonAndCircleContact.cpp in Sources */,
+				D04DD9B01DFE5A7A00397813 /* Hyphae.cpp in Sources */,
 				D0AB2AA81DE9FDAB0091832E /* b2EdgeAndPolygonContact.cpp in Sources */,
 				D0AB2A971DE9FDAB0091832E /* b2Draw.cpp in Sources */,
 				D0AB2AB11DE9FDAB0091832E /* b2PulleyJoint.cpp in Sources */,

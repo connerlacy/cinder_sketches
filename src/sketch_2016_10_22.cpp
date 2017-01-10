@@ -114,7 +114,7 @@ void sketch_2016_10_22::render(cairo::Context &c)
         
         c.setSource(ColorA(0.2,0.2,0.2,1));
         c.circle(x, y, radius/2.0);
-        c.fill();
+        c.stroke();
     }
 }
 
