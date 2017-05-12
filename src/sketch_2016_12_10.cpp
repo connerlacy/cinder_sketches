@@ -10,12 +10,19 @@
 #include "cinder/Perlin.h"
 #include "cinder/Rand.h"
 #include "cinder/cairo/cairo.h"
+#include "cinder/ImageIo.h"
+#include "cinder/Utilities.h"
+#include "cinder/gl/Shader.h"
+#include "cinder/qtime/AvfWriter.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+using namespace std::chrono;
+
 
 #define NUM_PARTICLES 21
+#define NUM_SPACES 4
 
 class sketch_2016_12_10 : public App {
 public:
@@ -24,6 +31,7 @@ public:
     void mouseUp( MouseEvent event ) override;
     void mouseMove(MouseEvent event)override;
     void mouseDrag(MouseEvent event)override;
+    void keyDown(KeyEvent event) override;
     void resize() override;
     void draw() override;
     
@@ -37,7 +45,7 @@ public:
     
     void   reset();
     ColorA randColor();
-    vec2   randPosition();
+    vec2   newOrigin(int randomOrCenter);
     
     bool   m_MouseDown = false;
     
@@ -62,11 +70,23 @@ public:
     
     bool m_NightMode = true;
     
+    Font m_Font;
+    
+    string startTime;
+    string startTimeS;
+    string endTime;
+    string endTimeS;
+    
+    float  matScale = 1.0f;
+    float  partcileScale = 1.25f;
+    
 };
 
 void prepareSettings(App::Settings *settings)
 {
-    settings->setFullScreen(true);
+    settings->setFullScreen(false);
+    settings->setWindowSize(800,800);
+    settings->setBorderless(true);
 }
 
 ColorA sketch_2016_12_10::randColor()
@@ -83,7 +103,7 @@ ColorA sketch_2016_12_10::randColor()
     return color;
 }
 
-vec2 sketch_2016_12_10::randPosition()
+vec2 sketch_2016_12_10::newOrigin(int randomOrCenter)
 {
     float stepSize = getWindowWidth() > getWindowHeight() ? getWindowHeight() : getWindowWidth();
     stepSize *= 0.99;
@@ -115,6 +135,7 @@ vec2 sketch_2016_12_10::randPosition()
 
 void sketch_2016_12_10::setup()
 {
+    m_Font = Font("NotCourierSans", 9.57);
     m_Epoch = std::time(0);
     m_Perlin = Perlin(2, m_Epoch);
     for(int i = 0; i < 3; i++)
@@ -124,7 +145,7 @@ void sketch_2016_12_10::setup()
     
     randSeed(m_Epoch);
     
-    m_NightMode = randBool();
+    m_NightMode = false;//randBool();
     
     m_Position = getWindowCenter();
     
@@ -143,6 +164,26 @@ void sketch_2016_12_10::reset()
 void sketch_2016_12_10::mouseDown( MouseEvent event )
 {
     m_MouseDown = true;
+    
+    milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
+    startTime = to_string(ms.count());
+    
+    string spaces;
+    
+    for(auto s : startTime)
+    {
+        //std::cout << s << "\n";
+        
+        spaces.push_back(s);
+        
+        for(int i = 0; i < NUM_SPACES; i++)
+        {
+            spaces.append(" ");
+        }
+    }
+    
+    startTimeS = spaces;
+    
     reset();
 }
 
@@ -159,6 +200,32 @@ void sketch_2016_12_10::mouseMove( MouseEvent event )
 void sketch_2016_12_10::mouseDrag( MouseEvent event )
 {
     m_MousePos = event.getPos();
+}
+
+void sketch_2016_12_10::keyDown(cinder::app::KeyEvent event)
+{
+    if(event.getChar() == 's')
+    {
+        milliseconds ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
+        endTime = to_string(ms.count());
+        endTimeS.clear();
+        
+        for(auto s : endTime)
+        {
+            endTimeS.push_back(s);
+            
+            for(int i = 0; i < NUM_SPACES; i++)
+            {
+                endTimeS.append(" ");
+            }
+        }
+        
+        
+        draw();
+        
+        Surface s = copyWindowSurface();
+        writeImage("/Users/connerlacy/Desktop/exports/" + startTime + "_" + endTime + ".png", s);
+    }
 }
 
 void sketch_2016_12_10::resize()
@@ -183,6 +250,9 @@ void sketch_2016_12_10::draw()
         }
         
         m_OffscreenContext.paint();
+        
+        m_OffscreenContext.setSource(ColorA(1,0.6,0.6));
+        m_OffscreenContext.rectangle(24, 24, 756, 756);
     }
     
     render(m_OffscreenContext);
@@ -191,6 +261,9 @@ void sketch_2016_12_10::draw()
     c.copySurface(m_OffscreenBuffer, m_OffscreenBuffer.getBounds());
     
     gl::draw( gl::Texture2d::create(m_OnscreenBuffer.getSurface()) );
+
+    
+    gl::drawString(startTimeS + ":    " + endTimeS, vec2(25,9), ColorA(0.0,0.0,0.0), m_Font);
 }
 
 void sketch_2016_12_10::render(cairo::Context &c)
@@ -233,7 +306,8 @@ void sketch_2016_12_10::render(cairo::Context &c)
     
     if( (getElapsedFrames() % m_PositionClock) == 0)
     {
-        randPosition();
+        m_Position = getWindowCenter();
+        //newOrigin(0);
         m_PositionClock = randInt(180,500);
     }
     
@@ -244,18 +318,25 @@ void sketch_2016_12_10::render(cairo::Context &c)
         m_CircleRadius  = m_Perlin.fBm(0.4,(float)getElapsedFrames()/30.3) * radMax + radMin;
         m_PathRadius    = m_Perlin.fBm(0.5,(float)getElapsedFrames()/80.0) * pathRadMax + pathRadMin - m_CircleRadius/2.0;
         
+        m_CircleRadius *= partcileScale;
+        m_PathRadius   *= partcileScale;
+        
         Path2d path;
         path.moveTo(vec2(0,m_PathRadius + m_PathRadiusOffset));
         
         mat3 m;
         m = translate(m, vec2(m_Position));
         m = rotate(m, (float)M_PI*5.0f * m_Perlin.fBm(0.1,(float)getElapsedFrames()/100.0 + 1.0f));
+        m = scale(m, vec2(matScale));
         path.transform(m);
         
         //c.circle(path.getPoints()[0], m_CircleRadius);
         c.circle(path.getPoints()[0], m_CircleRadius);
         c.fill();
     }
+    
+    //c.setSource(ColorA(0.1,0.1,0.1));
+    //c.showText("test");
 }
 
 

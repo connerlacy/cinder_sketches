@@ -1,0 +1,8 @@
+{
+   "FrameRate" : true,
+   "MaxValue" : 128,
+   "RawTared" : true,
+   "SensorGain" : 1,
+   "Show2D" : false,
+   "Threshold" : 0
+}
